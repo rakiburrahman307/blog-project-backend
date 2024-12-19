@@ -6,3 +6,4 @@ export type TUser = {
   role: TRole;
   isBlocked: boolean;
 };
+
