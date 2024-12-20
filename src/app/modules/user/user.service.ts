@@ -34,6 +34,7 @@ const login = async (payload: TLoginUser) => {
   }
 
   const userObject = {
+    _id: existUser?._id,
     email: existUser?.email,
     role: existUser?.role,
   };
