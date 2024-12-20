@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 export type TRole = 'admin' | 'user';
 export type TUser = {
   name: string;
@@ -10,4 +12,9 @@ export type TUser = {
 export type TLoginUser = {
   email: string;
   password: string;
+};
+export type TAuth = {
+  id: Types.ObjectId;
+  email: string;
+  role: 'admin' | 'user';
 };

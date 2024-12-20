@@ -8,10 +8,16 @@ const blogZodValidation = z.object({
       required_error: 'Content is required',
       invalid_type_error: 'Content must be a string',
     }),
-    // authorId: z.string(),
+  }),
+});
+const updateZodValidation = z.object({
+  body: z.object({
+    title: z.string().optional(),
+    content: z.string().optional(),
   }),
 });
 
 export const blogValidationSchema = {
   blogZodValidation,
+  updateZodValidation
 };

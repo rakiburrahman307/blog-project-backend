@@ -39,7 +39,7 @@ const login = async (payload: TLoginUser) => {
     role: existUser?.role,
   };
   // Generate JWT token
-  const token = jwt.sign(userObject, config?.JWT_SECRET_KEY || 'secret', {
+  const token = jwt.sign(userObject, config?.JWT_SECRET_KEY as string, {
     expiresIn: '24h',
   });
 
