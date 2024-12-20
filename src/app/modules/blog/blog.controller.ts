@@ -26,7 +26,7 @@ const updateBlogIntoDB = catchAsync(async (req, res) => {
     data: result,
   });
 });
-// delete blog for user 
+// delete blog for user
 const deleteBlogFormDB = catchAsync(async (req, res) => {
   const { id } = req.params;
   const user = req?.user;
@@ -39,14 +39,22 @@ const deleteBlogFormDB = catchAsync(async (req, res) => {
   });
 });
 // find all the blog post and filtering results
-const getAllBlogsFormDB =catchAsync(async() => {});
-
-
+const getAllBlogsFormDB = catchAsync(async (req, res) => {
+  const query = req.query as Record<string, string>;
+  const result = await blogService.getAllBlogs(query);
+  sendResponse(res, {
+    success: true,
+    message: 'Blogs fetched successfully',
+    statusCode: status.OK,
+    data: result,
+  });
+});
 
 const blogController = {
   createBlogIIntoDB,
   updateBlogIntoDB,
-  deleteBlogFormDB
+  deleteBlogFormDB,
+  getAllBlogsFormDB,
 };
 
 export default blogController;

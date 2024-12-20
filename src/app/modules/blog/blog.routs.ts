@@ -25,8 +25,9 @@ router.delete(
   blogController.deleteBlogFormDB
 );
 
-// router.post(
-//   '/login',
-// );
+router.get(
+  '/blogs',
+  blogController.getAllBlogsFormDB
+);
 
 export const blogRoute = router;

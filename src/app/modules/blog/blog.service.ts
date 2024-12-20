@@ -1,5 +1,5 @@
 import CustomError from '../../manageAllTypesErrors/CustomError';
-import { TBlog } from './blog.interface';
+import { SortOrder, TBlog } from './blog.interface';
 import { Blog } from './blog.model';
 import status from 'http-status';
 
@@ -82,9 +82,35 @@ const deleteBlog = async (
   await Blog.findByIdAndDelete(id);
   return;
 };
+
+const getAllBlogs = async (query: Record<string, string>) => {
+  const { search, sortBy = 'createdAt', sortOrder = 'desc', filter } = query;
+
+  const searchQuery: Record<string, any> = search
+    ? {
+        $or: [
+          { title: { $regex: search, $options: 'i' } },
+          { content: { $regex: search, $options: 'i' } },
+        ],
+      }
+    : {};
+    // filter query 
+  const filterQuery: Record<string, any> = filter ? { author: filter } : {};
+//   sort option 
+  const sortOption: Record<string, SortOrder> = {
+    [sortBy]: sortOrder === 'desc' ? -1 : 1,
+  };
+  const combinedQuery = { ...searchQuery, ...filterQuery };
+
+  const blogs = await Blog.find(combinedQuery)
+    .sort(sortOption)
+    .populate('author');
+    return blogs;
+};
 const blogService = {
   createBlog,
   updateBlog,
   deleteBlog,
+  getAllBlogs,
 };
 export default blogService;
