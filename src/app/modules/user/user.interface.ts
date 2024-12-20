@@ -7,3 +7,7 @@ export type TUser = {
   isBlocked: boolean;
 };
 
+export type TLoginUser = {
+  email: string;
+  password: string;
+};

@@ -8,13 +8,23 @@ const registerUser = catchAsync(async (req, res) => {
   // register logic here
   sendResponse(res, {
     success: true,
-    message: "User registered successfully",
+    message: 'User registered successfully',
     statusCode: status.CREATED,
     data: result,
-  })
+  });
 });
 
-const loginUser = () => {};
+const loginUser = catchAsync(async (req, res) => {
+  // send data to service function
+  const result = await userService.login(req?.body);
+  // response
+  sendResponse(res, {
+    success: true,
+    message: 'Login successful',
+    statusCode: status.OK,
+    data: result,
+  });
+});
 
 const userController = {
   registerUser,

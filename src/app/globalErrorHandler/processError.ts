@@ -11,16 +11,16 @@ const processError = (err: any) => {
   if (err?.code === 11000) return handleDuplicateError(err);
   if (err instanceof CustomError) {
     return {
-      statusCode: err.statusCode,
-      message: err.message,
-      errorSources: [{ path: '', message: err.message }],
+      statusCode: err?.statusCode,
+      message: err?.message,
+      errorSources: [{ path: '', message: err?.message }],
     };
   }
   if (err instanceof Error) {
     return {
       statusCode: 500,
       message: err.message,
-      errorSources: [{ path: '', message: err.message }],
+      errorSources: [{ path: '', message: err?.message }],
     };
   }
   return {
