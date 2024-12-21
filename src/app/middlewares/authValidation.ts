@@ -17,15 +17,21 @@ const authValidation = (...requiredRoles: TRole[]) => {
       token,
       config.JWT_SECRET_KEY as string,
     ) as JwtPayload;
+
     const { _id, email, role } = decoded;
+
     const user = await User.findOne({ _id: _id, email: email });
+
     if (!user) {
       throw new CustomError(status.NOT_FOUND, 'This user is not found !');
     }
+
     const userIsBlocked = user?.isBlocked;
+
     if (userIsBlocked) {
       throw new CustomError(status.FORBIDDEN, 'This user is blocked !');
     }
+
     if (requiredRoles && !requiredRoles.includes(role)) {
       throw new CustomError(
         status.UNAUTHORIZED,

@@ -35,7 +35,6 @@ const deleteBlogFormDB = catchAsync(async (req, res) => {
     success: true,
     message: 'Blog deleted successfully',
     statusCode: status.OK,
-    data: {},
   });
 });
 // find all the blog post and filtering results

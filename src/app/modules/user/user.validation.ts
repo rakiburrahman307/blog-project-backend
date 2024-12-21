@@ -17,8 +17,8 @@ const userLoginValidation = z.object({
     email: z.string().email({ message: 'Invalid email address' }).trim(),
     password: z.string().min(8).max(20),
   }),
-})
+});
 export const userZodValidationSchema = {
   userValidation,
-  userLoginValidation
+  userLoginValidation,
 };

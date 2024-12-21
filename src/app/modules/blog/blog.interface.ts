@@ -6,4 +6,5 @@ export type TBlog = {
   author: Types.ObjectId;
   isPublished: boolean;
 };
+
 export type SortOrder = 1 | -1 | 'asc' | 'desc';

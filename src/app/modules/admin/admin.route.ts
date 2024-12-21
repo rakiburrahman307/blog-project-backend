@@ -8,13 +8,12 @@ const router = express.Router();
 router.patch(
   '/users/:userId/block',
   authValidation(USER_ROLE.admin),
-  adminController.handleBlockUsersByAdmin
+  adminController.handleBlockUsersByAdmin,
 );
 router.delete(
   '/blogs/:id',
   authValidation(USER_ROLE.admin),
-  adminController.handleDeleteBlogByAdmin
+  adminController.handleDeleteBlogByAdmin,
 );
-
 
 export const adminRoute = router;

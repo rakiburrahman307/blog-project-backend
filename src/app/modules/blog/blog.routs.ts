@@ -11,23 +11,20 @@ router.post(
   '/blogs',
   authValidation(USER_ROLE.user, USER_ROLE.admin),
   validateZodSchema(blogValidationSchema.blogZodValidation),
-  blogController.createBlogIIntoDB
+  blogController.createBlogIIntoDB,
 );
 router.patch(
   '/blogs/:id',
   authValidation(USER_ROLE.user),
   validateZodSchema(blogValidationSchema.updateZodValidation),
-  blogController.updateBlogIntoDB
+  blogController.updateBlogIntoDB,
 );
 router.delete(
   '/blogs/:id',
   authValidation(USER_ROLE.user),
-  blogController.deleteBlogFormDB
+  blogController.deleteBlogFormDB,
 );
 
-router.get(
-  '/blogs',
-  blogController.getAllBlogsFormDB
-);
+router.get('/blogs', blogController.getAllBlogsFormDB);
 
 export const blogRoute = router;

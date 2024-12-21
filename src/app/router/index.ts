@@ -1,7 +1,7 @@
 import express from 'express';
-import { userRoute } from '../user/user.routs';
-import { blogRoute } from '../blog/blog.routs';
-import { adminRoute } from '../admin/admin.route';
+import { userRoute } from '../modules/user/user.routs';
+import { blogRoute } from '../modules/blog/blog.routs';
+import { adminRoute } from '../modules/admin/admin.route';
 const routers = express.Router();
 
 const routes = [

@@ -35,7 +35,7 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-// toEnsure not send those fields to the Client 
+// toEnsure not send those fields to the Client
 userSchema.methods.toJSON = function () {
   const user = this.toObject();
   delete user.password;

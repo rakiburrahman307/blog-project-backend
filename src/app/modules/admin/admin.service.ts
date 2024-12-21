@@ -16,7 +16,7 @@ const blockUser = async (id: string) => {
   }
   return;
 };
-// delete blog by admin 
+// delete blog by admin
 const deleteBlog = async (id: string) => {
   //find and delete the blog
   const deletedBlog = await Blog.findByIdAndDelete(id);
