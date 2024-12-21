@@ -1,6 +1,7 @@
 import express from 'express';
 import { userRoute } from '../user/user.routs';
 import { blogRoute } from '../blog/blog.routs';
+import { adminRoute } from '../admin/admin.route';
 const routers = express.Router();
 
 const routes = [
@@ -11,6 +12,10 @@ const routes = [
   {
     path: '/',
     route: blogRoute,
+  },
+  {
+    path: '/admin',
+    route: adminRoute,
   },
 ];
 

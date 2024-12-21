@@ -4,8 +4,9 @@ import status from 'http-status';
 import adminService from './admin.service';
 
 const handleBlockUsersByAdmin = catchAsync(async (req, res) => {
-    // send the user id to the service function 
-  const result = await adminService.blockUser()
+  const { userId } = req.params;
+  // send the user id to the service function
+  await adminService.blockUser(userId);
   sendResponse(res, {
     success: true,
     message: 'Block users by admin successfully',
@@ -13,9 +14,9 @@ const handleBlockUsersByAdmin = catchAsync(async (req, res) => {
   });
 });
 const handleDeleteBlogByAdmin = catchAsync(async (req, res) => {
-
-    // send the blog id to the service function 
-    const result = await adminService.blockUser()
+  const { id } = req.params;
+  // send the blog id to the service function
+  const result = await adminService.blockUser(id);
 
   sendResponse(res, {
     success: true,
