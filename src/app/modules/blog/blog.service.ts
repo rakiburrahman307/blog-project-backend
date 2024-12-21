@@ -94,18 +94,17 @@ const getAllBlogs = async (query: Record<string, string>) => {
         ],
       }
     : {};
-    // filter query 
+  // filter query
   const filterQuery: Record<string, any> = filter ? { author: filter } : {};
-//   sort option 
+  //   sort option
   const sortOption: Record<string, SortOrder> = {
     [sortBy]: sortOrder === 'desc' ? -1 : 1,
   };
-  const combinedQuery = { ...searchQuery, ...filterQuery };
+  const finalQuery = { ...searchQuery, ...filterQuery };
+  //  find the all blogs
+  const blogs = await Blog.find(finalQuery).sort(sortOption).populate('author');
 
-  const blogs = await Blog.find(combinedQuery)
-    .sort(sortOption)
-    .populate('author');
-    return blogs;
+  return blogs;
 };
 const blogService = {
   createBlog,
