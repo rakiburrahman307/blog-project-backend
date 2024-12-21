@@ -28,7 +28,7 @@ const authValidation = (...requiredRoles: TRole[]) => {
     }
     if (requiredRoles && !requiredRoles.includes(role)) {
       throw new CustomError(
-        status.FORBIDDEN,
+        status.UNAUTHORIZED,
         'You are not authorized to access this route!',
       );
     }

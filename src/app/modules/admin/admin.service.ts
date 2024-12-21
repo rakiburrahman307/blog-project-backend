@@ -1,4 +1,5 @@
 import CustomError from '../../manageAllTypesErrors/CustomError';
+import { Blog } from '../blog/blog.model';
 import { User } from '../user/user.model';
 import status from 'http-status';
 
@@ -15,8 +16,17 @@ const blockUser = async (id: string) => {
   }
   return;
 };
+// delete blog by admin 
 const deleteBlog = async (id: string) => {
-  console.log(id);
+  //find and delete the blog
+  const deletedBlog = await Blog.findByIdAndDelete(id);
+
+  // not existing in database
+  if (!deletedBlog) {
+    throw new CustomError(status.NOT_FOUND, 'Blog not found!');
+  }
+
+  return;
 };
 
 const adminService = {

@@ -4,6 +4,7 @@ import handleValidationError from '../manageAllTypesErrors/handleValidationError
 import handleCastError from '../manageAllTypesErrors/handleCastError';
 import handleDuplicateError from '../manageAllTypesErrors/handleDuplicateError';
 import CustomError from '../manageAllTypesErrors/CustomError';
+import status from 'http-status';
 const processError = (err: any) => {
   if (err instanceof ZodError) return handleZodError(err);
   if (err?.name === 'validationError') return handleValidationError(err);
@@ -18,13 +19,13 @@ const processError = (err: any) => {
   }
   if (err instanceof Error) {
     return {
-      statusCode: 500,
-      message: err.message,
+      statusCode: status.BAD_REQUEST,
+      message: err?.message,
       errorSources: [{ path: '', message: err?.message }],
     };
   }
   return {
-    statusCode: 500,
+    statusCode: status.INTERNAL_SERVER_ERROR,
     message: 'Something went wrong!',
     errorSources: [],
   };
